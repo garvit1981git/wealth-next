@@ -1,26 +1,44 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@theme {
+  /* Mapping your 60% variables to Tailwind utilities */
+  --color-pureBg: var(--purebg);
+  --color-mainBg: var(--mainBg);
+
+  /* Mapping your 30% variables to Tailwind utilities */
+  --color-primaryText: var(--thePrimaryText);
+  --color-secondaryText: var(--theSecondaryText);
+
+  /* Mapping your 10% variables to Tailwind utilities */
+  --color-accentLight: var(--accent-light);
+  --color-accentDark: var(--accent-dark);
+  --color-cardBorder: var(--card-border-color);
+}
+/* THIS IS Light THEME */
+
+html:not(.dark) {
+  --purebg: #ffffff;
+  --mainBg: #f8fafc;
+
+  --thePrimaryText: #0f172a;
+  --theSecondaryText: #64748b;
+
+  --accent-light: #7c3aed;
+  --accent-dark: #6d28d9;
+}
+/* THIS IS DARK THEME*/
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --purebg: #000000;
+  --mainBg: #0a0a0c;
+  --thePrimaryText: #fafafa;
+  --theSecondaryText: #a1a1aa;
+  --accent-light: #8b5cf6;
+  --accent-dark: #7c3aed;
+  --card-border: 1px solid #1f1f23;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-pureBg);
+  color: var(--color-primaryText);
 }
