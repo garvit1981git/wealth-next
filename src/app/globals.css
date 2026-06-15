@@ -39,6 +39,7 @@ html:not(.dark) {
 }
 
 body {
+  /* overflow-x: hidden; */
   background-color: var(--color-pureBg);
   color: var(--color-primaryText);
 }

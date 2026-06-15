@@ -15,7 +15,7 @@ let Dashboardpage = ({ user, budget }) => {
   let [acc, setacc] = useState("");
   return (
     <div className="p-6 flex flex-col gap-10">
-      <h1 className="capitalize text-5xl font-bold text-primaryText mb-6">
+      <h1 className="capitalize text-2xl sm:text-5xl font-bold text-primaryText mb-6">
         dashboard for {user.name}
       </h1>
       {user.Transaction.length == 0 ? null : (
@@ -32,23 +32,24 @@ let Dashboardpage = ({ user, budget }) => {
           </div>
         </>
       )}
-      {budget === 0 ? null : (
+      {user.Transaction.length === 0 ? null : (
         <div className="flex justify-end">
           <EmailInsightsButton userId={user._id} email={user.email} />
         </div>
       )}
       {/* <EmailInsightsButton userId={user._id} email={user.email} /> */}
-      <div className="grid grid-cols-3 gap-6">
-        {/* Add new account */}
-
-        <CreateAccountDrawer>
-          <div className="bg-mainBg rounded-xl  border-cardBorder shadow-sm hover:shadow-md transition p-10 cursor-pointer flex flex-col items-center justify-center min-h-[200px]">
+         <CreateAccountDrawer>
+          <div className="bg-mainBg rounded-xl  border-cardBorder shadow-sm hover:shadow-md transition sm:p-10  px-30 cursor-pointer flex flex-col items-center justify-center min-h-50">
             <Plus className="h-10 w-10 text-primaryText" />
             <div className="text-secondaryText font-bold mt-3">
               Add new account
             </div>
           </div>
         </CreateAccountDrawer>
+      <div className="grid grid-cols-3 gap-6">
+        {/* Add new account */}
+
+     
 
         {/* All account cards here */}
         <AccountCardList />

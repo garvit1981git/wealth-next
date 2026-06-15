@@ -77,10 +77,10 @@ const Usercard = ({ user, dbtheme }) => {
       {/* Trigger: Stylish Finance Avatar */}
       <button
         onClick={() => setOpen(true)}
-        className="group relative flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 font-bold text-white shadow-lg shadow-indigo-500/20 transition-all hover:scale-110 active:scale-95"
+        className="group relative flex h-7 w-7 md:h-9 md:w-9 items-center justify-center rounded-xl bg-accentLight font-bold text-white shadow-lg shadow-indigo-500/20 transition-all hover:scale-110 active:scale-95"
       >
         {u.name.charAt(0).toUpperCase()}
-        <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-white dark:border-slate-900 bg-emerald-500"></span>
+        {/* <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-white dark:border-slate-900 bg-emerald-500"></span> */}
       </button>
 
       {/* Modal via Portal */}

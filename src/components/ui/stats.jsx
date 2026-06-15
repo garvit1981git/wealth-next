@@ -8,10 +8,10 @@ let Stats = () => {
   // });
   return (
     <>
-      <div className="stats flex gap-10 justify-between bg-mainBg p-10 capitalize text-center">
+      <div className="stats grid grid-cols-2  md:flex  md:flex-wrap gap-10 justify-between bg-mainBg p-6 capitalize text-center">
         {statsData.map((elem, index) => (
           <div className="indivstat text-center p-2 " key={index}>
-            <h1 className="text-4xl font-extrabold text-primaryText m-2">
+            <h1 className="sm:text-4xl font-extrabold  text-primaryText m-2">
               {elem.value}
             </h1>
             <h1 className="text-secondaryText">{elem.label}</h1>

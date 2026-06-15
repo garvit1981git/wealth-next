@@ -2,12 +2,12 @@ import { testimonialsData } from "../../../data/landingpagedata.js";
 
 const Testimonials = () => {
   return (
-    <div className="mt-20 px-4 sm:px-10 lg:px-20 text-center">
+    <div className="mt-20  p-6  text-center">
       <h1 className="text-4xl md:text-5xl font-bold mb-16   text-primaryText">
         What Our Users Say
       </h1>
 
-      <div className="CardsHolder grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+      <div className="CardsHolder grid gap-10 sm:grid-cols-2 lg:grid-cols-3  justify-items-center">
         {testimonialsData.map((elem, i) => (
           <div
             key={i}

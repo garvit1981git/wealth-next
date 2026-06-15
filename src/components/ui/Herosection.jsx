@@ -28,12 +28,12 @@ let HeroSection = () => {
 
   return (
     <>
-      <div className="text-center gap-8 flex flex-col items-center p-20 pt-30 ">
-        <h1 className="text-8xl capitalize font-extrabold leading-relaxed  text-primaryText">
+      <div className="text-center gap-8 flex flex-col items-center p-6  pt-30 overflow-hidden ">
+        <h1 className="md:text-8xl text-2xl capitalize font-extrabold leading-relaxed text-primaryText">
           manage your finances <br />
           with intelligence
         </h1>
-        <p className="text-secondaryText">
+        <p className="text-secondaryText p-06 sm:px-20 md:px-40 lg:px-60 text-lg">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, quae?
           Veritatis doloribus, harum eius exercitationem sapiente ullam
           consequatur quidem, est quo, illo voluptate molestias excepturi

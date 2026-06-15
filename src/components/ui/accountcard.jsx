@@ -48,9 +48,10 @@ export default function AccountCardList() {
           flex flex-col
           gap-3
           min-h-[200px]
+          min-w-[200px]
         "
         >
-          <div className="flex justify-between items-center">
+          <div className="flex  justify-between items-center">
             <div className="text-lg font-semibold text-primaryText capitalize">
               {acc.accountname}
             </div>
@@ -73,13 +74,13 @@ export default function AccountCardList() {
             </div>
           </div>
 
-          <div className="text-3xl font-bold text-primaryText">
+          <div className="sm:text-3xl text-2xl font-bold text-primaryText">
             ₹{acc.balance}
           </div>
 
           <div className="text-sm text-secondaryText">{acc.type} account</div>
 
-          <div className="flex items-center gap-4 text-sm text-secondaryText mt-1">
+          <div className="flex  items-center gap-4 text-sm text-secondaryText mt-1">
             <div className="flex items-center gap-1">
               <ArrowUpRight className="text-green-500 h-4 w-4" /> Income
             </div>
