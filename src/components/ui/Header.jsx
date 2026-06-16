@@ -47,7 +47,7 @@ function Navbar({ user }) {
   //   }
   // }, [theme]);
   return (
-    <nav className="fixed  top-0 w-full z-50 bg-mainBg/20 backdrop-blur-xl border- border-slate-800  px-6 py-4">
+    <nav className="fixed  top-0 w-full z-50 bg-mainBg/20 backdrop-blur-xl border- border-slate-800 px-2 sm:px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 group mr-4">
@@ -134,19 +134,19 @@ function Navbar({ user }) {
             <div className="flex items-center gap-4 border-l border-slate-800 ml-4 pl-4">
               <HeaderLink
                 url={"/dashboard"}
-                icon={<LayoutDashboard size={22} />}
+                icon={<LayoutDashboard size={20} />}
                 label="Dashboard"
               />
               <HeaderLink
                 url={"/transaction/create"}
-                icon={<PlusCircle size={22} />}
+                icon={<PlusCircle size={20} />}
                 label="Add New"
               />
 
               <User user={user} />
               <HeaderLink
                 url={"/sign-out"}
-                icon={<LogOut size={22} />}
+                icon={<LogOut size={20} />}
                 label="Sign Out"
               />
             </div>
@@ -156,12 +156,12 @@ function Navbar({ user }) {
         <div className="flex sm:hidden items-center space-x-1">
           <HeaderLink
             url={"/"}
-            icon={<Home size={22} className="text-primaryText" />}
+            icon={<Home size={20} className="text-primaryText" />}
             label="Home"
           />
           <HeaderLink
             url={"/about"}
-            icon={<Info size={22} className="text-primaryText" />}
+            icon={<Info size={20} className="text-primaryText" />}
             label="About"
           />
 
@@ -187,18 +187,18 @@ function Navbar({ user }) {
             <div className="flex items-center gap-4 border-l border-slate-800 ml-4 pl-4">
               <HeaderLink
                 url={"/dashboard"}
-                icon={<LayoutDashboard size={22} />}
+                icon={<LayoutDashboard size={20} />}
                 label="Dashboard"
               />
               <HeaderLink
                 url={"/transaction/create"}
-                icon={<PlusCircle size={22} />}
+                icon={<PlusCircle size={20} />}
                 label="Add New"
               />
               <User user={user} />
               <HeaderLink
                 url={"/sign-out"}
-                icon={<LogOut size={22} />}
+                icon={<LogOut size={20} />}
                 label="Sign Out"
               />
             </div>

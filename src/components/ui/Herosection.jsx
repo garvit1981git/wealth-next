@@ -40,14 +40,14 @@ let HeroSection = () => {
           dolores labore non aut totam ea blanditiis hic tempora ratione facere
           voluptates!
         </p>
-        <div className="b">
-          <button className="bg-accentLight p-3">Get Started</button>
+        <div className="b  font-medium">
+          <button className="bg-accentLight hover:bg-accentLight  p-2 sm:p-3">Get Started</button>
 
           <Link
             href="https://www.youtube.com/watch?v=ANdLTGWOirI&list=RDANdLTGWOirI&start_radio=1"
             target="_blank"
           >
-            <button className="bg-accentDark p-3">Watch demo</button>
+            <button className="bg-accentLight p-2 hover:bg-accentDark sm:p-3">Watch demo</button>
           </Link>
         </div>
         <div className="image-wrapper " style={{ perspective: "1000px" }}>

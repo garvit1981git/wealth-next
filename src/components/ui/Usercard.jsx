@@ -126,18 +126,18 @@ const Usercard = ({ user, dbtheme }) => {
                   <button
                     ref={containerRef}
                     onClick={toggleTheme}
-                    className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 transition-colors shadow-sm flex items-center justify-center overflow-hidden w-10 h-10"
+                    className="p-4 relative right-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 transition-colors shadow-sm flex items-center justify-center overflow-hidden w-10 h-10"
                     aria-label="Toggle Theme"
                   >
                     <div className="theme-icon flex items-center justify-center">
                       {theme === "light" ? (
                         <Sun
-                          size={18}
+                          size={20}
                           className="text-amber-500 fill-amber-100"
                         />
                       ) : (
                         <Moon
-                          size={18}
+                          size={20}
                           className="text-blue-400 fill-blue-950"
                         />
                       )}
