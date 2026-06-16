@@ -318,6 +318,7 @@ const TransactionList = ({ Transactions = [], currentpage, totalpage }) => {
                   onCheckedChange={(e) => {
                     handledeleteAll(Transactions.map((t) => t._id));
                   }}
+                  // key={t.type}
                   checked={selectIds.length === Transactions.length}
                 />
               </th>

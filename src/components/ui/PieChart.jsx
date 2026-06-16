@@ -70,13 +70,13 @@ const PieChart = ({ userid, setacc, acc }) => {
   if (!chartData) {
     return (
       <div className="flex justify-center items-center h-64 text-gray-400 font-medium">
-        No transaction data found for this account.
+        No EXPENSE transaction data found for this account.
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 transition-all duration-300">
+    <div className=" w-full max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 transition-all duration-300">
       <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center mb-6 tracking-tight">
         Expense Distribution
       </h3>

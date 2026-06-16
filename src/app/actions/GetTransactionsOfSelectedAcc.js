@@ -8,11 +8,11 @@ let GetTransactionsOfSelectedAcc = async (userid, acc) => {
 await Mongoosedb()
 let account = await Account.find({user: userid, accountname: acc}).populate("Transaction")
 
-let transactions = account[0].Transaction
+let transactions = account[0]?.Transaction
 
-let exptransactions = transactions.filter((t) => {
+let exptransactions = transactions?.filter((t) => {
   return t.type == "Expense"
-})
+}) || []
 return JSON.parse(JSON.stringify(exptransactions));
 }
 

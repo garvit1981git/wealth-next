@@ -43,10 +43,10 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
   }, [userid, acc]);
 
   return (
-    <div className="max-w-3xl mx-auto bg-mainBg rounded-xl shadow-sm border">
+    <div className=" md:max-w-3xl mx-auto bg-mainBg rounded-xl shadow-sm border w-full smooth-scrollbar">
       {/* Heading */}
-      <div className="px-5 py-4 border-b ">
-        <h2 className="text-lg font-semibold text-primaryText">
+      <div className="px-5 py-4 flex justify-between">
+        <h2 className="text-lg font-semibold text-primaryText flex-1">
           Recent Transactions
         </h2>
         <Select value={acc} onValueChange={setacc}>
@@ -54,12 +54,12 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
             <SelectValue placeholder="" />
           </SelectTrigger>
           <SelectContent className="bg-mainBg shadow-sm capitalize">
-            {allacc.map((acc) => (
+            {allacc.map((a) => (
               <SelectItem
-                key={acc._id} // or acc.accountname if _id does not exist
-                value={acc.accountname}
+                key={a._id} // or acc.accountname if _id does not exist
+                value={a.accountname}
               >
-                {acc.accountname}
+                {a.accountname}
               </SelectItem>
             ))}
           </SelectContent>
@@ -67,13 +67,13 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
       </div>
 
       {/* Table */}
-      <table className="w-full text-sm border-separate border-spacing-y-1">
+      <table className="w-full text-sm border-separate border-spacing-y-1 border-t">
         <tbody>
           {dataset.map((t) => {
             const category = defaultCategories.find((c) => c.id === t.category);
             const Icon = Icons[category?.icon] || Icons.MoreHorizontal;
 
-            return (
+            return (  
               <tr
                 key={t._id}
                 className="border-b last:border-none transition-all duration-200 hover:bg-mainBg rounded-lg"

@@ -26,7 +26,7 @@ let Dashboardpage = ({ user, budget }) => {
       {/* pie chart */}
       {user.Transaction.length == 0 ? null : (
         <>
-          <div className="flex justify-between items-start gap-30">
+          <div className="flex flex-wrap justify-between items-start gap-30">
             <DefAccountRecList userid={user._id} setacc={setacc} acc={acc} />
             <PieChart userid={user._id} setacc={setacc} acc={acc} />
           </div>
@@ -34,7 +34,7 @@ let Dashboardpage = ({ user, budget }) => {
       )}
       {user.Transaction.length === 0 ? null : (
         <div className="flex justify-end">
-          <EmailInsightsButton userId={user._id} email={user.email} />
+          {/* <EmailInsightsButton userId={user._id} email={user.email} /> */}
         </div>
       )}
       {/* <EmailInsightsButton userId={user._id} email={user.email} /> */}
