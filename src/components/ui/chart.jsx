@@ -90,18 +90,18 @@ let Chart = ({ Transactions }) => {
     setrange(e);
   };
   return (
-    <div className="w-full p-6 space-y-6">
+    <div className="w-full sm:p-6 space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-primaryText">
+      <div className=" flex items-center justify-between">
+        <h2 className=" sm:text-xl font-semibold text-primaryText">
           Income vs Expense
         </h2>
 
         <Select value={range} onValueChange={handlerange}>
-          <SelectTrigger className="w-[180px] bg-mainBg shadow-sm">
+          <SelectTrigger className="w-35 sm:w-45 bg-mainBg shadow-sm">
             <SelectValue placeholder="Set Range" />
           </SelectTrigger>
-          <SelectContent className="w-[180px] bg-mainBg shadow-sm">
+          <SelectContent className="w-35 sm:w-45 bg-mainBg shadow-sm">
             <SelectItem value="ALL">All</SelectItem>
             <SelectItem value="1W">1 Week</SelectItem>
             <SelectItem value="1M">1 Month</SelectItem>
@@ -141,7 +141,7 @@ let Chart = ({ Transactions }) => {
       </div>
 
       {/* Chart card */}
-      <div className="rounded-xl border bg-mainBg p-4 shadow-sm ">
+      <div className="rounded-xl bg-mainBg p-4 shadow-sm ">
         <ResponsiveContainer width="100%" height={350}>
           <BarChart
             data={data}

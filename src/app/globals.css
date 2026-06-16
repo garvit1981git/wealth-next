@@ -43,3 +43,41 @@ body {
   background-color: var(--color-pureBg);
   color: var(--color-primaryText);
 }
+
+@layer utilities {
+  .smooth-scrollbar {
+    overflow-x: auto;
+    /* Smooths out scrolling behaviors across the site */
+    scroll-behavior: smooth; 
+  }
+  
+  /* 1. Define static baseline sizing */
+  .smooth-scrollbar::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .smooth-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* 2. BASE STATE (Mouse leaves / Out-transition) */
+  .smooth-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(39, 39, 42, 0); /* Explicitly set to transparent zinc */
+    border-radius: 9999px;
+    /* CRITICAL FIX: A faster fade-out duration (200ms) with a cubic-bezier 
+      forces the browser to drop the color quickly when the hover is broken.
+    */
+    transition: background-color 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  /* 3. HOVER STATE (Mouse enters / In-transition) */
+  .smooth-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: #27272a; /* Sleek zinc-800 */
+    /* A slightly softer entry duration (300ms) makes the initial 
+      appearance feel smooth and intentional as your mouse approaches.
+    */
+    transition: background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* 4. DIRECT THUMB HOVER (Optional: interactive pop) */
+}

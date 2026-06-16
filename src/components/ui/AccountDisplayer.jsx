@@ -57,27 +57,27 @@ const AccountDisplayer = ({ accountId }) => {
   if (!account) return null;
 
   return (
-    <main className="min-h-screen bg-pureBg px-10 py-8">
+    <main className="min-h-screen bg-pureBg sm:px-10 px-4 sm:py-8">
       {/* Page header */}
-      <div className="mb-8 mt-5">
-        <h1 className="text-4xl  text-primaryText capitalize font-black">
+      <div className="sm:mb-8 mb-4 mt-5">
+        <h1 className="sm:text-4xl text-2xl  text-primaryText capitalize font-black">
           {account.accountname}
         </h1>
         <p className="mt-1 text-secondaryText">{account.type} account</p>
       </div>
 
       {/* Top summary */}
-      <section className="grid grid-cols-3 gap-6">
+      <section className="flex gap-3 sm:gap-6">
         {/* Balance */}
-        <div className="col-span-2 rounded-2xl bg-mainBg p-10 shadow-sm">
+        <div className="flex-2 rounded-2xl bg-mainBg p-4 sm:p-10 shadow-sm">
           <p className="text-sm text-secondaryText">Current Balance</p>
-          <p className="mt-3 text-4xl font-semibold text-primaryText flex items-center gap-2">
+          <p className="mt-3 sm:text-4xl text-2xl font-semibold text-primaryText flex items-center gap-2">
             ₹{account.balance.$numberDecimal}
           </p>
         </div>
 
         {/* Status */}
-        <div className="rounded-2xl bg-mainBg p-8 shadow-sm">
+        <div className="rounded-2xl bg-mainBg p-4 sm:p-8 shadow-sm">
           <p className="text-sm text-secondaryText">Account Status</p>
 
           {account.isDefault ? (
@@ -92,10 +92,10 @@ const AccountDisplayer = ({ accountId }) => {
       </section>
 
       {/* Transactions section */}
-      <section className="mt-10 rounded-2xl bg-mainBg p-10 shadow-sm ">
-        <div className=" flex items-center gap-2">
+      <section className="sm:mt-10 mt-4 rounded-2xl bg-mainBg sm:p-10 p-4 shadow-sm ">
+        <div className="h-10 flex items-center gap-2">
           <CreditCard size={18} />
-          <h2 className="text-xl font-semibold text-primaryText">
+          <h2 className="text-lg sm:text-xl font-semibold text-primaryText">
             Transactions Overview
           </h2>
         </div>
@@ -105,7 +105,7 @@ const AccountDisplayer = ({ accountId }) => {
             No transactions found for this account.
           </p>
         ) : (
-          <div className="mt-6">
+          <div className=" sm:mt-6">
             {/* { char } */}
             <Chart Transactions={account.Transaction}></Chart>
 
