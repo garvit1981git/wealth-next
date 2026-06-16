@@ -38,18 +38,19 @@ let Dashboardpage = ({ user, budget }) => {
         </div>
       )}
       {/* <EmailInsightsButton userId={user._id} email={user.email} /> */}
-         <CreateAccountDrawer>
-          <div className="bg-mainBg rounded-xl  border-cardBorder shadow-sm hover:shadow-md transition sm:p-10  px-30 cursor-pointer flex flex-col items-center justify-center min-h-50">
-            <Plus className="h-10 w-10 text-primaryText" />
-            <div className="text-secondaryText font-bold mt-3">
-              Add new account
-            </div>
-          </div>
-        </CreateAccountDrawer>
-      <div className="grid grid-cols-3 gap-6">
-        {/* Add new account */}
 
-     
+        <div className="sm:grid flex flex-col gap-10 md:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+          <CreateAccountDrawer>
+            <div className="bg-mainBg rounded-xl  border-cardBorder shadow-sm hover:shadow-md transition sm:p-10  px-30 cursor-pointer flex flex-col items-center justify-center min-h-50 max-w-117.5">
+              <Plus className="h-10 w-10 text-primaryText" />
+              <div className="text-secondaryText font-bold mt-3">
+                Add new account
+              </div>
+            </div>
+          </CreateAccountDrawer>
+        </div>
+      <div className="sm:grid flex flex-col gap-10 md:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+        {/* Add new account */}
 
         {/* All account cards here */}
         <AccountCardList />

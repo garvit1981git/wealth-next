@@ -47,7 +47,7 @@ function Navbar({ user }) {
   //   }
   // }, [theme]);
   return (
-    <nav className="fixed top-0 w-full z-50 bg-mainBg/20 backdrop-blur-xl border- border-slate-800  px-6 py-4">
+    <nav className="fixed  top-0 w-full z-50 bg-mainBg/20 backdrop-blur-xl border- border-slate-800  px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 group mr-4">
@@ -104,14 +104,14 @@ function Navbar({ user }) {
             href="/"
             className="flex items-center gap-2 px-4 py-2 rounded-lg  bg-accentLight hover:bg-accentDark transition-all"
           >
-            <Home size={18} className="text-primaryText" />
+            <Home size={22} className="text-primaryText" />
             <span className="">Home</span>
           </Link>
           <Link
             href="/about"
             className="flex items-center gap-2 px-4 py-2 rounded-lg  bg-accentLight hover:bg-accentDark transition-all"
           >
-            <Info size={18} className="text-primaryText" />
+            <Info size={22} className="text-primaryText" />
             <span>About</span>
           </Link>
 
@@ -134,19 +134,19 @@ function Navbar({ user }) {
             <div className="flex items-center gap-4 border-l border-slate-800 ml-4 pl-4">
               <HeaderLink
                 url={"/dashboard"}
-                icon={<LayoutDashboard size={20} />}
+                icon={<LayoutDashboard size={22} />}
                 label="Dashboard"
               />
               <HeaderLink
                 url={"/transaction/create"}
-                icon={<PlusCircle size={20} />}
+                icon={<PlusCircle size={22} />}
                 label="Add New"
               />
 
               <User user={user} />
               <HeaderLink
                 url={"/sign-out"}
-                icon={<LogOut size={20} />}
+                icon={<LogOut size={22} />}
                 label="Sign Out"
               />
             </div>
@@ -156,26 +156,29 @@ function Navbar({ user }) {
         <div className="flex sm:hidden items-center space-x-1">
           <HeaderLink
             url={"/"}
-            icon={<Home size={15} className="text-primaryText" />}
+            icon={<Home size={22} className="text-primaryText" />}
             label="Home"
           />
           <HeaderLink
             url={"/about"}
-            icon={<Info size={15} className="text-primaryText" />}
+            icon={<Info size={22} className="text-primaryText" />}
             label="About"
           />
 
           {!user ? (
-            <div className="flex items-center gap-4 ml-4">
+            <div className="flex items-center gap-2 sm:gap-4 ml-auto sm:ml-4">
+              {/* Secondary Ghost Button */}
               <Link
                 href="/sign-in"
-                className="bg-accentLight hover:bg-accentDark text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-indigo-500/20 transition-all active:scale-95"
+                className="text-sm font-medium text-thePrimaryText px-3 py-2 rounded-lg hover:bg-white/10 transition-all"
               >
                 Sign In
               </Link>
+
+              {/* Primary Solid Action Button */}
               <Link
-                href="/sign-Up"
-                className="bg-accentLight hover:bg-accentDark text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-indigo-500/20 transition-all active:scale-95"
+                href="/sign-up"
+                className="text-sm font-medium bg-accentLight text-white px-3.5 py-2 rounded-lg hover:bg-accentDark shadow-sm hover:shadow-purple-500/20 transition-all whitespace-nowrap"
               >
                 Get Started
               </Link>
@@ -184,18 +187,18 @@ function Navbar({ user }) {
             <div className="flex items-center gap-4 border-l border-slate-800 ml-4 pl-4">
               <HeaderLink
                 url={"/dashboard"}
-                icon={<LayoutDashboard size={15} />}
+                icon={<LayoutDashboard size={22} />}
                 label="Dashboard"
               />
               <HeaderLink
                 url={"/transaction/create"}
-                icon={<PlusCircle size={15} />}
+                icon={<PlusCircle size={22} />}
                 label="Add New"
               />
               <User user={user} />
               <HeaderLink
                 url={"/sign-out"}
-                icon={<LogOut size={15} />}
+                icon={<LogOut size={22} />}
                 label="Sign Out"
               />
             </div>

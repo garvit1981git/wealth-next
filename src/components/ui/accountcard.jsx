@@ -48,7 +48,7 @@ export default function AccountCardList() {
           flex flex-col
           gap-3
           min-h-[200px]
-          min-w-[200px]
+           max-w-117.5
         "
         >
           <div className="flex  justify-between items-center">
@@ -60,17 +60,17 @@ export default function AccountCardList() {
               onClick={(e) => e.stopPropagation()}
               onMouseDown={(e) => e.stopPropagation()}
             >
-           <Switch
-  checked={acc.isDefault}
-  onCheckedChange={() => handleToggle(acc)}
-  className="
+              <Switch
+                checked={acc.isDefault}
+                onCheckedChange={() => handleToggle(acc)}
+                className="
     data-[state=checked]:bg-emerald-500 
     data-[state=unchecked]:bg-slate-200 
     dark:data-[state=unchecked]:bg-slate-700
     [&>span]:bg-white 
     dark:[&>span]:bg-slate-100
   "
-/>
+              />
             </div>
           </div>
 

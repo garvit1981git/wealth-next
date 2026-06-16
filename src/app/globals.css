@@ -30,7 +30,7 @@ html:not(.dark) {
 
 :root {
   --purebg: #000000;
-  --mainBg: #0a0a0c;
+  --mainBg: hsl(220, 10%, 6%);
   --thePrimaryText: #fafafa;
   --theSecondaryText: #a1a1aa;
   --accent-light: #8b5cf6;
