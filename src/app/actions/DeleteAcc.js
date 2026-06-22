@@ -24,6 +24,7 @@ let DeleteAcc = async (Accid) => {
 
   // 4. Refresh the page data and redirect
   revalidatePath("/dashboard");
-  redirect("/dashboard");
+  // redirect("/dashboard");
+  return true;
 };
 export default DeleteAcc;

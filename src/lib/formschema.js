@@ -66,8 +66,48 @@ const TransactionSchema = z.object({
     });
   }
 })
-
+ const savingsGoalSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Goal name is required")
+    .max(50, "Goal name is too long"),
+  targetAmount: z
+    .preprocess((val) => parseFloat(val), z.number().positive("Target amount must be greater than 0")),
+  durationMonths: z
+    .preprocess((val) => parseInt(val, 10), z.number().int().positive("Duration must be at least 1 month")),
+  accountId: z
+    .string()
+    .min(1, "Please select an account for initial funding setup"),
+  initialFunding: z
+    .preprocess((val) => (val === "" ? 0 : parseFloat(val)), z.number().min(0, "Initial funding cannot be negative"))
+    .default(0),
+});
+let amountAllocationSchema = z.object({
+  goalId: z.string().min(1, "Please select a target savings goal"),
+  amount: z
+    .preprocess(
+      (val) => (val === "" ? undefined : parseFloat(val)),
+      z.number({ required_error: "Amount is required" })
+        .positive("Allocation amount must be greater than 0")
+    ),
+});
+let createTransferSchema = (sourceBalance) => 
+  z.object({
+    targetAccountId: z.string().min(1, "Please select a destination account"),
+    amount: z
+      .preprocess(
+        (val) => (val === "" ? undefined : parseFloat(val)),
+        z.number({ required_error: "Transfer amount is required" })
+          .positive("Amount must be greater than 0")
+      )
+      .refine((val) => val <= sourceBalance, {
+        message: `Insufficient funds. Max available: ₹${sourceBalance.toLocaleString("en-IN")}`,
+      }),
+  });
 export { AccountSchema };
 export { UserSchema };
 export { TransactionSchema };
 export { signinschema };
+export { savingsGoalSchema };
+export { amountAllocationSchema };
+export { createTransferSchema };

@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* Keep your existing configurations intact */
+  // Opt-out native binary dependencies from the Server Components bundler loop
+  serverExternalPackages: ['@napi-rs/canvas', 'pdfjs-dist'],
+
   experimental: {
     serverActions: {
       bodySizeLimit: "5mb",

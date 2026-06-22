@@ -52,7 +52,7 @@ let TransactionForm = ({ user, acc, transactions }) => {
     try {
       const editId = isEditMode ? transactions._id : null;
       console.log("editing");
-      await CreateTransaction(data, editId);
+      await CreateTransaction(data, editId , null);
       // The redirect happens inside the Server Action,
       // but you can add a toast message here if you want.
     } catch (error) {

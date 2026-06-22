@@ -8,6 +8,7 @@ import {
   Home,
   Info,
   Wallet,
+  Menu,
 } from "lucide-react";
 // import { useState, useEffect, useRef } from "react";
 // import { Sun, Moon } from "lucide-react";
@@ -16,41 +17,19 @@ import User from "./User";
 import Logo from "../../images/Wealth.png";
 import HeaderLink from "./HeaderLink";
 import Image from "next/image";
+import Sidebar from "./Sidebar";
 
 function Navbar({ user }) {
-  // const [theme, setTheme] = useState("light");
-  // const containerRef = useRef(null);
-
-  // const toggleTheme = () => {
-  //   const nextTheme = theme === "light" ? "dark" : "light";
-  //   setTheme(nextTheme);
-
-  //   // Update cookies or localStorage here if you are persisting themes
-  //   document.cookie = `theme=${nextTheme}; path=/; max-age=31536000`;
-  // };
-
-  // useEffect(() => {
-  //   const icon = containerRef.current?.querySelector(".theme-icon");
-  //   if (!icon) return;
-
-  //   // Trigger GSAP animation whenever theme changes
-  //   gsap.fromTo(
-  //     icon,
-  //     { rotate: -90, scale: 0.5, opacity: 0 },
-  //     { rotate: 0, scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }
-  //   );
-
-  //   if (theme === "dark") {
-  //     document.documentElement.classList.add("dark");
-  //   } else {
-  //     document.documentElement.classList.remove("dark");
-  //   }
-  // }, [theme]);
   return (
     <nav className="fixed  top-0 w-full z-50 bg-mainBg/20 backdrop-blur-xl border- border-slate-800 px-2 sm:px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-3 group mr-4">
+          <Sidebar userCard={user ? <User user={user} /> : null} />
+     
+        <Link
+          href="/"
+          className="hidden sm:flex  items-center gap-3 group mr-4"
+        >
           {/* Icon */}
           <svg
             className="w-10 h-10 transition-transform group-hover:scale-105"
@@ -154,7 +133,7 @@ function Navbar({ user }) {
         </div>
 
         <div className="flex sm:hidden items-center space-x-1">
-          <HeaderLink
+          {/* <HeaderLink
             url={"/"}
             icon={<Home size={20} className="text-primaryText" />}
             label="Home"
@@ -163,7 +142,7 @@ function Navbar({ user }) {
             url={"/about"}
             icon={<Info size={20} className="text-primaryText" />}
             label="About"
-          />
+          /> */}
 
           {!user ? (
             <div className="flex items-center gap-2 sm:gap-4 ml-auto sm:ml-4">
@@ -183,26 +162,26 @@ function Navbar({ user }) {
                 Get Started
               </Link>
             </div>
-          ) : (
-            <div className="flex items-center gap-4 border-l border-slate-800 ml-4 pl-4">
-              <HeaderLink
-                url={"/dashboard"}
-                icon={<LayoutDashboard size={20} />}
-                label="Dashboard"
-              />
-              <HeaderLink
-                url={"/transaction/create"}
-                icon={<PlusCircle size={20} />}
-                label="Add New"
-              />
-              <User user={user} />
-              <HeaderLink
-                url={"/sign-out"}
-                icon={<LogOut size={20} />}
-                label="Sign Out"
-              />
-            </div>
-          )}
+          ) : null
+          // <div className="flex items-center gap-4 border-l border-slate-800 ml-4 pl-4">
+          //   <HeaderLink
+          //     url={"/dashboard"}
+          //     icon={<LayoutDashboard size={20} />}
+          //     label="Dashboard"
+          //   />
+          //   <HeaderLink
+          //     url={"/transaction/create"}
+          //     icon={<PlusCircle size={20} />}
+          //     label="Add New"
+          //   />
+          //   <User user={user} />
+          //   <HeaderLink
+          //     url={"/sign-out"}
+          //     icon={<LogOut size={20} />}
+          //     label="Sign Out"
+          //   />
+          // </div>
+          }
         </div>
       </div>
     </nav>

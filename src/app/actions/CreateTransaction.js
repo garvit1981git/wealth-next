@@ -1,12 +1,12 @@
-"use server"
+"use server";
 
 import Mongoosedb from "@/lib/mongoose";
-import { redirect } from "next/navigation"
+import { redirect } from "next/navigation";
 import User from "../../../models/User";
 import Account from "../../../models/Account";
 import Transaction from "../../../models/Transaction";
 
-let CreateTransaction = async (data, editId) => {
+let CreateTransaction = async (data, editId, dateobject) => {
   await Mongoosedb();
 
   const account = await Account.findById(data.accountId);
@@ -17,14 +17,14 @@ let CreateTransaction = async (data, editId) => {
     // REVERSE the old transaction impact before applying new values
     const oldTransaction = await Transaction.findById(editId);
     if (oldTransaction) {
-      const reverseAmount = oldTransaction.type === "Income" 
-        ? -Number(oldTransaction.amount) 
-        : Number(oldTransaction.amount);
-      
+      const reverseAmount =
+        oldTransaction.type === "Income"
+          ? -Number(oldTransaction.amount)
+          : Number(oldTransaction.amount);
+
       account.balance = Number(account.balance) + reverseAmount;
     }
   }
-
   // APPLY the new transaction impact
   if (data.type === "Income") {
     account.balance = Number(account.balance) + Number(data.amount);
@@ -44,7 +44,9 @@ let CreateTransaction = async (data, editId) => {
     return d;
   };
 
-  let nextdate = data.isRecurring ? calculateNextRecurringDate(data.date, data.recurringInterval) : null;
+  let nextdate = data.isRecurring
+    ? calculateNextRecurringDate(data.date, data.recurringInterval)
+    : null;
 
   // --- 3. SAVE OR UPDATE TRANSACTION ---
   const transactionData = {
@@ -57,22 +59,49 @@ let CreateTransaction = async (data, editId) => {
     category: data.category,
     isRecurring: data.isRecurring,
     recurringInterval: data.isRecurring ? data.recurringInterval : undefined,
-    nextRecurringDate: nextdate
+    nextRecurringDate: nextdate,
   };
+  if (dateobject) {
+    let changeddate = calculateNextRecurringDate(
+      dateobject.nextRecurringDate,
+      dateobject.recurringInterval,
+    );
 
+    try {
+      // Find the master template by its ID and advance the date field
+      const updatedTemplate = await Transaction.findByIdAndUpdate(
+        dateobject._id,
+        {
+          $set: { nextRecurringDate: changeddate },
+        },
+        { new: true }, // Returns the updated document instead of the old one
+      );
+
+      console.log(
+        "Master template schedule advanced successfully:",
+        updatedTemplate,
+      );
+    } catch (error) {
+      console.error("Failed to update recurring transaction date:", error);
+    }
+  }
   if (editId) {
     // UPDATE EXISTING
     await Transaction.findByIdAndUpdate(editId, transactionData);
   } else {
     // CREATE NEW
     const newTransaction = await Transaction.create(transactionData);
-    
+
     // Add to User and Account arrays
-    await User.findByIdAndUpdate(data.user, { $push: { Transaction: newTransaction._id } });
-    await Account.findByIdAndUpdate(data.accountId, { $push: { Transaction: newTransaction._id } });
+    await User.findByIdAndUpdate(data.user, {
+      $push: { Transaction: newTransaction._id },
+    });
+    await Account.findByIdAndUpdate(data.accountId, {
+      $push: { Transaction: newTransaction._id },
+    });
   }
 
   redirect(`/account/${data.accountId}`);
-}
+};
 
 export default CreateTransaction;

@@ -82,7 +82,7 @@ const PieChart = ({ userid, setacc, acc }) => {
       </h3>
 
       {/* Chart Canvas & Center Visual Stack */}
-      <div className="relative w-64 h-64 mx-auto mb-6">
+      <div className="relative w-50 h-50 mx-auto mb-6">
         <Doughnut
           data={chartData}
           options={{
@@ -95,8 +95,8 @@ const PieChart = ({ userid, setacc, acc }) => {
               tooltip: {
                 backgroundColor: "rgba(17, 24, 39, 0.9)",
                 padding: 12,
-                titleFont: { size: 14, weight: "bold" },
-                bodyFont: { size: 13 },
+                titleFont: { size: 12, weight: "bold" },
+                bodyFont: { size: 11 },
                 cornerRadius: 8,
                 displayColors: true,
                 callbacks: {
@@ -126,7 +126,7 @@ const PieChart = ({ userid, setacc, acc }) => {
       </div>
 
       {/* Custom matching Legend items Grid */}
-      <div className="grid grid-cols-2 gap-3 max-h-36 overflow-y-auto pr-1 custom-scrollbar mt-4">
+      <div className="grid grid-cols-3 gap-2 max-h-20 overflow-y-auto  custom-scrollbar mt-4">
         {Object.keys(rawGroupedData).map((categoryKey) => {
           const value = rawGroupedData[categoryKey];
           const percentage = ((value / totalExpense) * 100).toFixed(0);
@@ -137,9 +137,9 @@ const PieChart = ({ userid, setacc, acc }) => {
               key={categoryKey}
               className="flex items-center justify-between p-2 rounded-xl bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             >
-              <div className="flex items-center space-x-2.5 min-w-0">
+              <div className="flex items-center space-x-2">
                 <span
-                  className="w-3 h-3 rounded-full shrink-0"
+                  className="w-1.5 h-1.5 rounded-full shrink-0"
                   style={{ backgroundColor: config.color }} // Perfectly matched to your array configs!
                 />
                 <span className="text-xs font-medium text-gray-600 dark:text-gray-300 truncate capitalize">

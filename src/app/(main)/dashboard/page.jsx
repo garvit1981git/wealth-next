@@ -5,32 +5,43 @@ import jwt from "jsonwebtoken";
 import Mongoosedb from "@/lib/mongoose";
 import User from "../../../../models/User";
 import GetUserBudget from "@/app/actions/GetUserBudget";
-// import GetUserBudget from "@/app/actions/GetUserBudget";
+import GetAllGoalList from "@/app/actions/GetAllGoalList";
 
 const Dashboard = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("Token")?.value;
-  // console.log("this is token", token); D
-  // console.log(process.env.JWT_SECRET)
+
+  if (!token) {
+    redirect("/sign-in");
+  }
+
   let decoded = jwt.verify(token, process.env.JWT_SECRET);
-  // console.log(decoded);  D
+  
   await Mongoosedb();
   let user = await User.findById(decoded.userid).lean();
-  const safeUser = JSON.parse(JSON.stringify(user));
+  
   if (!user) {
     console.log("unauthorised");
     redirect("/sign-in");
   }
-  if (!token) {
-    redirect("/sign-in");
-  }
+
+  const safeUser = JSON.parse(JSON.stringify(user));
+  
+  // 1. Destructure the updated structured response properties safely
+  const { goals, completedGoalNames } = await GetAllGoalList(safeUser._id);
+  
   let acc = user.accounts;
   let res = acc.length > 0 ? await GetUserBudget(user._id) : null;
 
-  // console.log("user is",user) DD
   return (
     <>
-      <Dashboardpage user={safeUser} budget={res}></Dashboardpage>
+      {/* 2. Forward the target arrays directly into your Client page structure */}
+      <Dashboardpage 
+        user={safeUser} 
+        budget={res} 
+        goals={goals} 
+        completedGoalNames={completedGoalNames}
+      />
     </>
   );
 };

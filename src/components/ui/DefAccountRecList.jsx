@@ -1,7 +1,6 @@
 "use client";
 
-import getdata from "@/app/actions/getdata";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import * as Icons from "lucide-react";
 import { defaultCategories } from "../../../data/categary";
 import {
@@ -12,53 +11,63 @@ import {
   SelectValue,
 } from "./select";
 import GetUserAccounts from "@/app/actions/GetUserAccounts";
+import getdata from "@/app/actions/getdata";
+
+const categoryMap = Object.fromEntries(defaultCategories.map((c) => [c.id, c]));
 
 const DefAccountRecList = ({ userid, setacc, acc }) => {
-  const [dataset, setdata] = useState([]);
+  const [dataset, setDataset] = useState([]);
+  const [allAccounts, setAllAccounts] = useState([]);
 
-  let [allacc, setallacc] = useState([]);
+  // 1. Initial Load: Pull User Profiles & Default Settings
   useEffect(() => {
-    let getacc = async () => {
-      let res = await GetUserAccounts();
-      console.log("acc are ", res);
-      let defacc = res.filter((acc) => acc.isDefault == true);
-      console.log("deffacc", defacc);
-      setallacc(res);
-      setacc(defacc[0].accountname);
+    const fetchAccounts = async () => {
+      const res = await GetUserAccounts();
+      if (!res || res.length === 0) return;
+
+      setAllAccounts(res);
+
+      // Auto-set state to matching default account if currently unassigned
+      const defaultAcc =
+        res.find((account) => account.isDefault === true) || res[0];
+      if (defaultAcc && !acc) {
+        setacc(defaultAcc.accountname);
+      }
     };
-    getacc();
-  }, [userid]);
-  useEffect(() => {
-    async function load() {
-      const res = await getdata(userid, acc);
+    fetchAccounts();
+  }, [userid, setacc, acc]);
 
-      let sorteddata = res.sort((a, b) => {
-        let avalue = a.date;
-        let bvalue = b.date;
-        return new Date(bvalue) - new Date(avalue);
-      });
-      setdata(sorteddata);
-    }
-    load();
+  // 2. Data Synchronization Layer: Fetch and Order Ledgers on State Shifts
+  useEffect(() => {
+    if (!acc) return;
+
+    const fetchLedger = async () => {
+      const res = await getdata(userid, acc);
+      if (!res) return;
+
+      const sortedData = [...res].sort(
+        (a, b) => new Date(b.date) - new Date(a.date),
+      );
+      setDataset(sortedData);
+    };
+    fetchLedger();
   }, [userid, acc]);
 
   return (
-    <div className=" md:max-w-3xl mx-auto bg-mainBg rounded-xl shadow-sm border w-full smooth-scrollbar">
-      {/* Heading */}
-      <div className="px-5 py-4 flex justify-between">
-        <h2 className="text-lg font-semibold text-primaryText flex-1">
+    <div className="md:max-w-3xl mx-auto bg-mainBg border border-neutral-800 rounded-2xl shadow-sm w-full overflow-hidden">
+      {/* Control Header Grid Block */}
+      <div className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-neutral-800 bg-neutral-900/10">
+        <h2 className="text-lg font-bold text-primaryText tracking-tight">
           Recent Transactions
         </h2>
-        <Select value={acc} onValueChange={setacc}>
-          <SelectTrigger className="w-[200px] capitalize">
-            <SelectValue placeholder="" />
+
+        <Select value={acc || ""} onValueChange={setacc}>
+          <SelectTrigger className="w-full sm:w-52 bg-mainBg capitalize border-neutral-800">
+            <SelectValue placeholder="Select Account" />
           </SelectTrigger>
-          <SelectContent className="bg-mainBg shadow-sm capitalize">
-            {allacc.map((a) => (
-              <SelectItem
-                key={a._id} // or acc.accountname if _id does not exist
-                value={a.accountname}
-              >
+          <SelectContent className="bg-mainBg border border-neutral-800 text-primaryText shadow-xl capitalize">
+            {allAccounts.map((a) => (
+              <SelectItem key={a._id || a.accountname} value={a.accountname}>
                 {a.accountname}
               </SelectItem>
             ))}
@@ -66,66 +75,76 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
         </Select>
       </div>
 
-      {/* Table */}
-      <table className="w-full text-sm border-separate border-spacing-y-1 border-t">
-        <tbody>
-          {dataset.map((t) => {
-            const category = defaultCategories.find((c) => c.id === t.category);
-            const Icon = Icons[category?.icon] || Icons.MoreHorizontal;
+      {/* Structured History Ledger Grid */}
+      <div className="w-full overflow-x-auto smooth-scrollbar">
+        <table className="w-full text-sm text-left border-collapse">
+          <tbody className="divide-y divide-neutral-800">
+            {dataset.map((t) => {
+              const category = categoryMap[t.category];
+              const CustomIcon = Icons[category?.icon] || Icons.MoreHorizontal;
 
-            return (  
-              <tr
-                key={t._id}
-                className="border-b last:border-none transition-all duration-200 hover:bg-mainBg rounded-lg"
-              >
-                {" "}
-                {/* Date */}
-                <td className="px-5 py-3 text-primaryText whitespace-nowrap">
-                  {new Date(t.date).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </td>
-                {/* Description */}
-                <td className="px-5 py-3 text-primaryText capitalize">
-                  {t.description || "—"}
-                </td>
-                {/* Category */}
-                <td className="px-5 py-3">
-                  <span
-                    className="group inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium transition-all"
-                    style={{
-                      backgroundColor: `${category?.color}20`,
-                      color: category?.color,
-                    }}
-                  >
-                    <Icon
-                      size={14}
-                      className="transition-transform duration-200 group-hover:scale-110"
-                    />
-                    {category?.name || "Other"}
-                  </span>
-                </td>
-                {/* Amount */}
-                <td
-                  className={`px-5 py-3 text-right font-semibold transition-colors duration-200 ${
-                    t.type === "Income"
-                      ? "text-green-600 hover:text-green-700"
-                      : "text-red-600 hover:text-red-700"
-                  }`}
+              return (
+                <tr
+                  key={t._id}
+                  className="hover:bg-neutral-900/20 transition-colors group"
                 >
-                  {t.type === "Income" ? "+" : "-"}₹{t.amount}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                  {/* Ledger Column: Execution Date */}
+                  <td className="px-5 py-4 text-secondaryText font-medium whitespace-nowrap align-middle">
+                    {new Date(t.date).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </td>
 
-      {/* Empty state */}
+                  {/* Ledger Column: Internal Reference/Description */}
+                  <td className="px-5 py-4 text-primaryText font-medium capitalize max-w-[200px] truncate align-middle">
+                    {t.description || "—"}
+                  </td>
+
+                  {/* Ledger Column: Functional Tag Classification */}
+                  <td className="px-5 py-4 align-middle whitespace-nowrap">
+                    <span
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide"
+                      style={{
+                        backgroundColor: `${category?.color}12`,
+                        color: category?.color,
+                        border: `1px solid ${category?.color}25`,
+                      }}
+                    >
+                      <CustomIcon
+                        size={13}
+                        className="transition-transform duration-200 group-hover:scale-110"
+                      />
+                      {category?.name || "Other"}
+                    </span>
+                  </td>
+
+                  {/* Ledger Column: Metric Balancing Value Statement */}
+                  <td
+                    className={`px-5 py-4 text-right font-bold font-mono tracking-tight text-base align-middle whitespace-nowrap ${
+                      t.type === "Income" ? "text-emerald-500" : "text-rose-500"
+                    }`}
+                  >
+                    {t.type === "Income" ? "+" : "-"}₹
+                    {t.amount.toLocaleString("en-IN", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Contextual Blank State Empty Boundary Reminders */}
       {dataset.length === 0 && (
-        <p className="text-center text-gray-500 py-6">No recent transactions</p>
+        <div className="flex flex-col items-center justify-center py-10 px-4 text-center">
+          <p className="text-secondaryText text-sm">
+            No transaction execution records indexed for this account.
+          </p>
+        </div>
       )}
     </div>
   );

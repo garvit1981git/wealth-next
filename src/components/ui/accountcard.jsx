@@ -51,6 +51,7 @@ export default function AccountCardList() {
   let HandleAccDel = async (Accid) => {
     console.log("this is accid", Accid);
     let res = await DeleteAcc(Accid);
+
   };
   return (
     <>
@@ -69,8 +70,7 @@ export default function AccountCardList() {
           cursor-pointer
           flex flex-col
           gap-3
-          min-h-[200px]
-           max-w-117.5
+       max-h-45 max-w-100
         "
         >
           <div className="flex  justify-between items-center">
@@ -97,7 +97,7 @@ export default function AccountCardList() {
           </div>
 
           <div className="sm:text-3xl text-2xl font-bold text-primaryText">
-            ₹{acc.balance}
+            ₹{Math.floor(acc.balance)}
           </div>
 
           <div className="text-sm text-secondaryText">{acc.type} account</div>
