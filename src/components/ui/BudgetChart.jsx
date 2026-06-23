@@ -105,13 +105,13 @@ const BudgetChart = ({ userId }) => {
                 dataKey="month"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#a1a1aa", fontSize: 12, fontWeight: 500 }}
+                tick={{ fill: "primaryText", fontSize: 12, fontWeight: 500 }}
                 dy={10}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#a1a1aa", fontSize: 12, fontWeight: 500 }}
+                tick={{ fill: "primaryText", fontSize: 12, fontWeight: 500 }}
                 tickFormatter={(value) => `₹${value}`}
               />
               <Tooltip
@@ -127,7 +127,7 @@ const BudgetChart = ({ userId }) => {
                   paddingBottom: "20px",
                 
                   fontSize: "12px",
-                  fontWeight: "600",
+                  fontWeight: "700",
                   color: "#a1a1aa",
                 }}
               />

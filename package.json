@@ -38,6 +38,7 @@
     "mailparser": "^3.9.10",
     "mongoose": "^8.20.0",
     "next": "^16.2.9",
+    "nextjs-toploader": "^3.9.17",
     "node-cron": "^4.2.1",
     "nodemailer": "^7.0.11",
     "pdfjs-dist": "^6.0.227",

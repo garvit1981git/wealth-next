@@ -76,8 +76,8 @@ const PieChart = ({ userid, setacc, acc }) => {
   }
 
   return (
-    <div className="max-w-[300px] mx-auto p-3 rounded-3xl shadow-xl transition-all duration-300">
-      <h3 className="text-xs sm:text-sm md:text-lg font-semibold text-gray-800 dark:text-gray-100 text-center mb-6 tracking-tight">
+    <div className="max-w-[300px] text-primaryText mx-auto p-3 rounded-3xl shadow-xl transition-all duration-300">
+      <h3 className="text-xs sm:text-sm md:text-lg font-semibold  text-center mb-6 tracking-tight text-primaryText">
         Expense Distribution
       </h3>
 
@@ -112,10 +112,10 @@ const PieChart = ({ userid, setacc, acc }) => {
         />
         {/* Absolute Centered Total readout */}
         <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
-          <span className="text-xs sm:text-sm md:text-lg font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+          <span className="text-xs sm:text-sm md:text-lg font-medium text-primaryText uppercase tracking-wider">
             Total Spent
           </span>
-          <span className="text-sm md:text-lg font-bold text-gray-800 dark:text-gray-100 mt-0.5">
+          <span className="text-sm md:text-lg font-bold text-primaryText mt-0.5">
             ₹
             {totalExpense.toLocaleString(undefined, {
               minimumFractionDigits: 0,
@@ -133,23 +133,29 @@ const PieChart = ({ userid, setacc, acc }) => {
           const config = getCategoryConfig(categoryKey);
 
           return (
-            <div
-              key={categoryKey}
-              className="flex items-center justify-between transition-colors"
-            >
-              <div className="flex items-center space-x-2">
-                <span
-                  className="w-1.5 h-1.5 rounded-full shrink-0"
-                  style={{ backgroundColor: config.color }} // Perfectly matched to your array configs!
-                />
-                <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-300 truncate capitalize">
-                  {config.name}
-                </span>
-              </div>
-              <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 ml-1">
-                {percentage}%
-              </span>
-            </div>
+          <div
+  key={categoryKey}
+  className="flex items-center justify-between px-3 py-1.5 w-fit rounded-full transition-colors"
+  // Adds '26' to the hex code, which is 15% opacity in hex
+  style={{ backgroundColor: `${config.color}26` }}
+>
+  <div className="flex items-center space-x-2">
+    {/* Text uses the full solid color */}
+    <span 
+      className="text-xs md:text-sm text-primaryText font-medium truncate capitalize"
+      // style={{ color: config.color }}
+    >
+      {config.name}
+    </span>
+  </div>
+  
+  <span 
+    className="text-[10px] text-primaryText md:text-xs font-bold ml-2"
+    // style={{ color: config.color }}
+  >
+    {percentage}%
+  </span>
+</div>
           );
         })}
       </div>

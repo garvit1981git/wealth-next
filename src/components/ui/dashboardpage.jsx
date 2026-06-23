@@ -30,7 +30,7 @@ let Dashboardpage = ({ user, budget, goals, completedGoalNames }) => {
   }, [completedGoalNames]);
   const hasGoals = goals && goals.length > 0;
   return (
-    <div className="p-4 sm:p-6 max-w-7xl mx-auto">
+    <div className="p-4 sm:p-6 max-w-7xl mx-auto ">
       <div className="flex flex-col w-full gap-4">
         {/* ROW NUMBER 1 START */}
         {/* Stacks vertically on mobile/tablet, converts to horizontal row on desktop (lg) */}

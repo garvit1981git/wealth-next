@@ -3,6 +3,7 @@ import Header from "@/components/ui/Header";
 import "./globals.css";
 import Footer from "@/components/ui/Footer";
 import UserProviderForPage from "@/lib/UserProviderForPage";
+import NextTopLoader from "nextjs-toploader"; // 1. Import the loader
 // import "../cron";
 
 export const metadata = {
@@ -17,9 +18,15 @@ export default async function RootLayout({ children }) {
   const currentTheme = safeuser?.theme || "light";
 
   return (
-    // 2. FIXED: Feed the theme directly to the HTML element class string
     <html lang="en" className={currentTheme === "dark" ? "dark" : ""}>
       <body>
+        {/* 2. Add the loader component here */}
+        <NextTopLoader
+          color="#7c3aed" // You can change this to match your brand color
+          showSpinner={false}
+          zIndex={99999}
+        />
+
         <Header user={safeuser}></Header>
         <div className=" page min-h-screen">{children}</div>
         <Footer></Footer>

@@ -216,7 +216,7 @@ const AccountDisplayer = ({ accountId }) => {
             <div className="row-2 flex flex-col lg:flex-row gap-4 w-full lg:h-[420px]">
               {/* BLOCK 4: Balance Horizon Line Graph */}
               {/* Restored missing panel background/borders and fixed the class string typo */}
-              <div className="w-full lg:flex-1  rounded-2xl p-4 shadow-sm min-h-[300px] lg:min-h-0 flex flex-col">
+              <div className="w-full lg:flex-1  rounded-2xl min-h-[300px] lg:min-h-0 flex flex-col">
                 <BalanceTrendChart accountId={accountId} />
               </div>
 
