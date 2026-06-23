@@ -19,7 +19,7 @@ import {
 
 const IncomeExpenseChart = ({ data, range, onRangeChange }) => {
   return (
-    <div className="rounded-xl bg-mainBg p-4 shadow-sm border border-neutral-800">
+    <div className="rounded-xl flex-2 p-4 shadow-sm border border-neutral-800">
       <div className="w-auto h-auto sm:p-6 space-y-6">
         {/* Header Control Panel */}
         <div className="flex items-center justify-between">

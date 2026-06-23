@@ -52,7 +52,7 @@ html:not(.dark) {
   --accent-dark: #7c3aed;
 
   /* Synced up with your @theme variable naming mapping above */
-  --card-border-color: #1f1f23;
+--card-border-color: #32253e; 
 }
 body {
   /* overflow-x: hidden; */

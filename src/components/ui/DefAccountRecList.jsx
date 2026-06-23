@@ -54,10 +54,10 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
   }, [userid, acc]);
 
   return (
-    <div className="md:max-w-3xl mx-auto bg-mainBg border border-neutral-800 rounded-2xl shadow-sm w-full overflow-hidden">
+    <div className=" bg-mainBg border border-neutral-800 rounded-2xl shadow-sm w-full overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-cardBorder scrollbar-track-transparent max-h-[400px]">
       {/* Control Header Grid Block */}
       <div className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-neutral-800 bg-neutral-900/10">
-        <h2 className="text-lg font-bold text-primaryText tracking-tight">
+        <h2 className="text-xs sm:text-lg font-bold text-primaryText tracking-tight">
           Recent Transactions
         </h2>
 
@@ -65,7 +65,7 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
           <SelectTrigger className="w-full sm:w-52 bg-mainBg capitalize border-neutral-800">
             <SelectValue placeholder="Select Account" />
           </SelectTrigger>
-          <SelectContent className="bg-mainBg border border-neutral-800 text-primaryText shadow-xl capitalize">
+          <SelectContent className="bg-mainBg text-xs border border-neutral-800 text-primaryText shadow-xl capitalize">
             {allAccounts.map((a) => (
               <SelectItem key={a._id || a.accountname} value={a.accountname}>
                 {a.accountname}
@@ -89,7 +89,7 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
                   className="hover:bg-neutral-900/20 transition-colors group"
                 >
                   {/* Ledger Column: Execution Date */}
-                  <td className="px-5 py-4 text-secondaryText font-medium whitespace-nowrap align-middle">
+                  <td className="px-5 py-4 text-xs sm:text-sm text-secondaryText font-medium whitespace-nowrap align-middle">
                     {new Date(t.date).toLocaleDateString("en-GB", {
                       day: "2-digit",
                       month: "short",
@@ -98,7 +98,7 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
                   </td>
 
                   {/* Ledger Column: Internal Reference/Description */}
-                  <td className="px-5 py-4 text-primaryText font-medium capitalize max-w-[200px] truncate align-middle">
+                  <td className="px-5 py-4 text-primaryText font-medium text-xs sm:text-sm capitalize max-w-[200px] truncate align-middle">
                     {t.description || "—"}
                   </td>
 
@@ -122,7 +122,7 @@ const DefAccountRecList = ({ userid, setacc, acc }) => {
 
                   {/* Ledger Column: Metric Balancing Value Statement */}
                   <td
-                    className={`px-5 py-4 text-right font-bold font-mono tracking-tight text-base align-middle whitespace-nowrap ${
+                    className={`px-5 py-4 text-xs sm:text-sm text-right font-bold font-mono tracking-tight text-base align-middle whitespace-nowrap ${
                       t.type === "Income" ? "text-emerald-500" : "text-rose-500"
                     }`}
                   >

@@ -62,19 +62,19 @@ export default function AccountCardList() {
           className="
             bg-mainBg
           rounded-xl
-           border-cardBorder
-          shadow-sm
-          hover:shadow-md
+           border border-cardBorder
+          shadow-md
+          hover:shadow-2xl
           transition
           p-6
           cursor-pointer
           flex flex-col
-          gap-3
+          gap-1 md:gap-3
        max-h-45 max-w-100
         "
         >
           <div className="flex  justify-between items-center">
-            <div className="text-lg font-semibold text-primaryText capitalize">
+            <div className="md:text-lg text-sm font-semibold text-primaryText capitalize">
               {acc.accountname}
             </div>
 
@@ -82,31 +82,35 @@ export default function AccountCardList() {
               onClick={(e) => e.stopPropagation()}
               onMouseDown={(e) => e.stopPropagation()}
             >
-              <Switch
-                checked={acc.isDefault}
-                onCheckedChange={() => handleToggle(acc)}
-                className="
+          <Switch
+  checked={acc.isDefault}
+  onCheckedChange={() => handleToggle(acc)}
+  className="
+    /* Responsive Scaling */
+    scale-80 sm:scale-100 origin-right
+    
+    /* Your existing styles */
     data-[state=checked]:bg-emerald-500 
     data-[state=unchecked]:bg-slate-200 
     dark:data-[state=unchecked]:bg-slate-700
     [&>span]:bg-white 
     dark:[&>span]:bg-slate-100
   "
-              />
+/>
             </div>
           </div>
 
-          <div className="sm:text-3xl text-2xl font-bold text-primaryText">
+          <div className="md:text-xl lg:text-2xl text-lg font-bold text-primaryText">
             ₹{Math.floor(acc.balance)}
           </div>
 
-          <div className="text-sm text-secondaryText">{acc.type} account</div>
+          <div className="text-xs md:text-sm text-secondaryText">{acc.type} account</div>
           <div className="flex justify-between">
-            <div className="flex  items-center gap-4 text-sm text-secondaryText mt-1">
-              <div className="flex items-center gap-1">
+            <div className="flex  items-center gap-4 text-secondaryText mt-1">
+              <div className="flex text-xs md:text-sm  items-center gap-1">
                 <ArrowUpRight className="text-green-500 h-4 w-4" /> Income
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center text-xs md:text-sm gap-1">
                 <ArrowDownRight className="text-red-500 h-4 w-4" /> Expense
               </div>
             </div>
@@ -117,14 +121,14 @@ export default function AccountCardList() {
                   className="text-[var(--theSecondaryText)] hover:text-[var(--thePrimaryText)] transition-colors cursor-pointer"
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-[var(--mainBg)] border border-[var(--card-border)] text-[var(--thePrimaryText)] rounded-xl shadow-xl min-w-[120px]">
+              <DropdownMenuContent className="bg-[var(--mainBg)] border border-[var(--card-border)] text-[var(--thePrimaryText)] rounded-xl shadow-xl min-w-[100px]">
                 {/* <Link href={}> */}
-                <DropdownMenuItem className="cursor-pointer focus:bg-white/5 focus:text-[var(--thePrimaryText)] px-3 py-2 rounded-lg text-sm">
+                <DropdownMenuItem className="cursor-pointer focus:bg-white/5 focus:text-[var(--thePrimaryText)] px-3 py-2 rounded-lg text-xs md:text-sm">
                   Edit
                 </DropdownMenuItem>
                 {/* </Link> */}
                 <DropdownMenuItem
-                  className="cursor-pointer text-rose-500 focus:bg-rose-500/10 focus:text-rose-400 px-3 py-2 rounded-lg text-sm font-medium"
+                  className="cursor-pointer text-rose-500 focus:bg-rose-500/10 focus:text-rose-400 px-3 py-2 rounded-lg  text-xs md:text-sm font-medium"
                   onClick={() => HandleAccDel(acc.id)}
                 >
                   Delete

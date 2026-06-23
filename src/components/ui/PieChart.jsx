@@ -76,13 +76,13 @@ const PieChart = ({ userid, setacc, acc }) => {
   }
 
   return (
-    <div className=" w-full max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 transition-all duration-300">
-      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center mb-6 tracking-tight">
+    <div className="max-w-[300px] mx-auto p-3 rounded-3xl shadow-xl transition-all duration-300">
+      <h3 className="text-xs sm:text-sm md:text-lg font-semibold text-gray-800 dark:text-gray-100 text-center mb-6 tracking-tight">
         Expense Distribution
       </h3>
 
       {/* Chart Canvas & Center Visual Stack */}
-      <div className="relative w-50 h-50 mx-auto mb-6">
+      <div className="relative w-45 h-45 mx-auto mb-6">
         <Doughnut
           data={chartData}
           options={{
@@ -112,10 +112,10 @@ const PieChart = ({ userid, setacc, acc }) => {
         />
         {/* Absolute Centered Total readout */}
         <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
-          <span className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+          <span className="text-xs sm:text-sm md:text-lg font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider">
             Total Spent
           </span>
-          <span className="text-2xl font-bold text-gray-800 dark:text-gray-100 mt-0.5">
+          <span className="text-sm md:text-lg font-bold text-gray-800 dark:text-gray-100 mt-0.5">
             ₹
             {totalExpense.toLocaleString(undefined, {
               minimumFractionDigits: 0,
@@ -135,18 +135,18 @@ const PieChart = ({ userid, setacc, acc }) => {
           return (
             <div
               key={categoryKey}
-              className="flex items-center justify-between p-2 rounded-xl bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="flex items-center justify-between transition-colors"
             >
               <div className="flex items-center space-x-2">
                 <span
                   className="w-1.5 h-1.5 rounded-full shrink-0"
                   style={{ backgroundColor: config.color }} // Perfectly matched to your array configs!
                 />
-                <span className="text-xs font-medium text-gray-600 dark:text-gray-300 truncate capitalize">
+                <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-300 truncate capitalize">
                   {config.name}
                 </span>
               </div>
-              <span className="text-xs font-bold text-gray-500 dark:text-gray-400 ml-1">
+              <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 ml-1">
                 {percentage}%
               </span>
             </div>

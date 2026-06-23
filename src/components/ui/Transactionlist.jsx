@@ -134,7 +134,7 @@ const TransactionList = ({
   const currentPagedItems = sortedTransactions.slice(currentpage.startindex, currentpage.endindex);
 
   return (
-    <div className="bg-mainBg border border-cardBorder rounded-2xl overflow-hidden p-4 sm:p-6 shadow-sm space-y-4">
+    <div className="border border-cardBorder rounded-2xl overflow-hidden p-4 sm:p-6 shadow-sm space-y-4 min-h-[300px] ">
       
       {/* Control Filter Toolbar */}
       <div className="grid grid-cols-1 md:flex md:items-center md:justify-between gap-3 bg-pureBg p-3 rounded-xl border border-cardBorder/60">
@@ -191,9 +191,9 @@ const TransactionList = ({
       </div>
 
       {/* Ledger Table Container */}
-      <div className="w-full overflow-x-auto rounded-xl border border-cardBorder bg-mainBg">
-        <table className="w-full min-w-[700px] text-sm text-left">
-          <thead className="border-b border-cardBorder bg-pureBg/40 text-primaryText font-semibold">
+      <div className="w-full overflow-auto scrollbar-thin scrollbar-thumb-cardBorder scrollbar-track-transparent rounded-xl h-[250px] border border-cardBorder ">
+        <table className="w-full min-w-[700px] text-xs sm:text-sm text-left">
+          <thead className="border-b border-cardBorder text-primaryText font-semibold">
             <tr>
               <th className="p-4 w-12 text-center">
                 <Checkbox
@@ -238,26 +238,26 @@ const TransactionList = ({
                 const CustomIcon = Icons[category?.icon] || Icons.MoreHorizontal;
 
                 return (
-                  <tr key={t._id} className="hover:bg-pureBg/20 transition-colors group">
+                  <tr key={t._id} className="hover:bg-mainBg transition-colors group">
                     <td className="p-4 text-center align-middle">
                       <Checkbox
                         onCheckedChange={(checked) => handleSelectRow(checked, t._id)}
                         checked={selectIds.includes(t._id)}
                       />
                     </td>
-                    <td className="p-4 text-secondaryText font-medium whitespace-nowrap align-middle">
+                    <td className="p-4 text-secondaryText font-medium whitespace-nowrap align-middle text-xs sm:text-sm">
                       {new Date(t.date).toLocaleDateString("en-GB", {
                         day: "2-digit",
                         month: "short",
                         year: "numeric",
                       })}
                     </td>
-                    <td className="p-4 capitalize font-medium max-w-[200px] truncate align-middle">
+                    <td className="p-4 capitalize font-medium text-xs sm:text-sm max-w-[200px] truncate align-middle">
                       {t.description || "—"}
                     </td>
                     <td className="p-4 align-middle whitespace-nowrap">
                       <span
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide"
+                        className="inline-flex text-xs sm:text-sm items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide"
                         style={{
                           backgroundColor: `${category?.color}12`,
                           color: category?.color,
@@ -268,12 +268,12 @@ const TransactionList = ({
                         {category?.name || t.category}
                       </span>
                     </td>
-                    <td className={`p-4 text-right font-bold font-mono tracking-tight text-base align-middle whitespace-nowrap ${
+                    <td className={`p-4 text-right text-xs sm:text-sm font-bold font-mono tracking-tight text-base align-middle whitespace-nowrap ${
                       t.type === "Income" ? "text-emerald-500" : "text-rose-500"
                     }`}>
                       {t.type === "Income" ? "+" : "-"}₹{t.amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                     </td>
-                    <td className="p-4 text-center align-middle whitespace-nowrap">
+                    <td className="p-4 text-center text-xs sm:text-sm align-middle whitespace-nowrap">
                       {t.isRecurring && t.nextRecurringDate ? (
                         <Tooltip>
                           <TooltipTrigger asChild>
@@ -305,14 +305,14 @@ const TransactionList = ({
                         <DropdownMenuTrigger className="p-1.5 hover:bg-pureBg rounded-lg transition-colors focus:outline-none">
                           <Icons.MoreHorizontal size={16} className="text-secondaryText hover:text-primaryText transition-colors" />
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent className="bg-mainBg border border-cardBorder text-primaryText rounded-xl shadow-xl min-w-[120px]">
+                        <DropdownMenuContent className="bg-mainBg border border-cardBorder text-primaryText rounded-xl shadow-xl min-w-[100px]">
                           <Link href={`/transaction/create?edit=${t._id}`} className="w-full">
-                            <DropdownMenuItem className="cursor-pointer focus:bg-pureBg px-3 py-2 rounded-lg text-sm">
+                            <DropdownMenuItem className="cursor-pointer text-xs sm:text-sm focus:bg-pureBg px-3 py-2 rounded-lg ">
                               Edit Details
                             </DropdownMenuItem>
                           </Link>
                           <DropdownMenuItem
-                            className="cursor-pointer text-rose-500 focus:bg-rose-500/10 focus:text-rose-400 px-3 py-2 rounded-lg text-sm font-medium"
+                            className="cursor-pointer text-rose-500 focus:bg-rose-500/10 focus:text-rose-400 px-3 py-2 rounded-lg text-xs sm:text-sm  font-medium"
                             onClick={() => handleSingleDelete(t._id)}
                           >
                             Delete Record

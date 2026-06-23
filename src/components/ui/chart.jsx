@@ -104,7 +104,7 @@ const Chart = ({ Transactions, accountId,setTodaysExpense,setTodaysIncome,setTod
 
   return (
     <>
-      <div className="space-y-6 max-w-7xl mx-auto ">
+      
         {/* Top Section: Today's Income & Expenses Cards */}
         <IncomeExpenseChart
           data={chartData}
@@ -112,10 +112,7 @@ const Chart = ({ Transactions, accountId,setTodaysExpense,setTodaysIncome,setTod
           onRangeChange={setRange}
         />
 
-        {/* Bottom Section: Due / Next Recurring Reminders */}
-
-        {/* Middle Section: Chart Component */}
-      </div>
+  
      
     </>
   );

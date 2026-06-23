@@ -71,11 +71,11 @@ const BudgetChart = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="bg-mainBg border border-cardBorder rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col h-[380px] w-full">
+    <div className="bg-mainBg border border-cardBorder rounded-2xl p-6 sm:p-6 shadow-sm flex flex-col h-[380px] w-full">
       {/* Header Section */}
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-primaryText font-serif tracking-tight">
+          <h2 className="text-sm sm:text-xl font-bold text-primaryText font-serif tracking-tight">
             Budget
           </h2>
         </div>
@@ -98,7 +98,7 @@ const BudgetChart = ({ userId }) => {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={data}
-              margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
+              margin={{ top: 0, right: 0, left: 8, bottom: 0 }}
               barSize={40}
             >
               <XAxis
@@ -125,6 +125,7 @@ const BudgetChart = ({ userId }) => {
                 iconType="circle"
                 wrapperStyle={{
                   paddingBottom: "20px",
+                
                   fontSize: "12px",
                   fontWeight: "600",
                   color: "#a1a1aa",
@@ -137,19 +138,19 @@ const BudgetChart = ({ userId }) => {
                 dataKey="Income"
                 stackId="a"
                 fill="#a78bfa"
-                radius={[8, 8, 8, 8]}
+                radius={[6, 6, 6, 6]}
               />
               <Bar
                 dataKey="Expense"
                 stackId="a"
                 fill="#f9a8d4"
-                radius={[8, 8, 8, 8]}
+                radius={[6, 6, 6,6]}
               />
               <Bar
                 dataKey="Saving"
                 stackId="a"
                 fill="#38bdf8"
-                radius={[8, 8, 8, 8]}
+                radius={[6, 6, 6, 6]}
               />
             </BarChart>
           </ResponsiveContainer>
