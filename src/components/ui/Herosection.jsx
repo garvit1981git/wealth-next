@@ -28,7 +28,7 @@ let HeroSection = () => {
   });
 
   return (
-    <section className="relative w-full flex flex-col items-center text-center px-4 pt-28 sm:pt-32 pb-24 overflow-hidden gap-12 sm:gap-16 transition-colors duration-300">
+    <section className="relative w-full flex flex-col items-center text-center px-4 pt-28 sm:pt-35 pb-24 overflow-hidden gap-12 sm:gap-16 transition-colors duration-300">
       {/* BASE BG */}
       <div className="absolute inset-0 bg-pureBg z-0 pointer-events-none" />
 
