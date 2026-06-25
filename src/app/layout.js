@@ -13,7 +13,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let user = await UserProviderForPage();
-  let safeuser = user ? JSON.parse(JSON.stringify(user)) : null;
+  let safeuser = user ? JSON.parse(JSON.stringify(user)) : null;              
   console.log("this is user in layout", user);
   const currentTheme = safeuser?.theme || "light";
 

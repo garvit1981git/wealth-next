@@ -9,7 +9,7 @@ export default function Home() {
   return (<>
 
     <HeroSection></HeroSection>
-    <Stats></Stats>
+  
     <Features></Features>
     <Testimonials></Testimonials>
     <StartTrialSection></StartTrialSection>
