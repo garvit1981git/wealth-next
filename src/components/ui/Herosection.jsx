@@ -28,28 +28,35 @@ let HeroSection = () => {
   });
 
   return (
-    <section className="relative w-full flex flex-col items-center text-center px-4 pt-28 sm:pt-35 pb-24 overflow-hidden gap-12 sm:gap-16 transition-colors duration-300">
+    <section className="relative w-full flex flex-col items-center text-center px-4 pt-28 sm:pt-32 pb-24 overflow-hidden gap-12 sm:gap-16 transition-colors duration-300">
       {/* BASE BG */}
       <div className="absolute inset-0 bg-pureBg z-0 pointer-events-none" />
 
       {/* BUILDING IMAGE — height controlled per breakpoint */}
-      <div className="absolute top-0 left-0 right-0 w-full h-[600px] z-[1] pointer-events-none">
-        <Image
-          src={bgimg}
-          alt=""
-          fill
-          priority
-          className="object-cover object-top w-full"
-        />
-        {/* Fade overlay — theme-aware */}
-        <div
-          className="absolute inset-0 bg-gradient-to-b
-          from-[#eef0ff]/50 via-[#f0f1ff]/75 to-[#f0f1ff]
-          dark:from-[#0a0a14]/35 dark:via-[#0a0a14]/70 dark:to-[#0a0a14]"
-        />
-        {/* Tint layer */}
-        <div className="absolute inset-0 bg-indigo-100/30 dark:bg-indigo-950/50 mix-blend-multiply" />
-      </div>
+     {/* BUILDING IMAGE — responsive height + better crop control */}
+<div className="absolute top-0 left-0 right-0 w-full 
+  h-[520px] sm:h-[630px] md:h-[590px] lg:h-[600px] 
+  z-[1] pointer-events-none">
+  <Image
+    src={bgimg}
+    alt=""
+    fill
+    priority
+    sizes="100vw"                        
+    quality={90}                         
+    className="object-cover object-center sm:object-top w-full"  
+   
+  />
+
+  {/* Stronger fade on mobile so blur is hidden under the overlay */}
+  <div className="absolute inset-0 bg-gradient-to-b
+    from-[#eef0ff]/65 via-[#f0f1ff]/80 to-[#f0f1ff]
+    dark:from-[#0a0a14]/50 dark:via-[#0a0a14]/75 dark:to-[#0a0a14]
+    sm:from-[#eef0ff]/50 sm:via-[#f0f1ff]/75
+    sm:dark:from-[#0a0a14]/35 sm:dark:via-[#0a0a14]/70" />
+
+  <div className="absolute inset-0 bg-indigo-100/30 dark:bg-indigo-950/50 mix-blend-multiply" />
+</div>
 
       {/* RADIAL GLOW */}
       <div
